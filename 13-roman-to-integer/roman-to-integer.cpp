@@ -1,8 +1,5 @@
-
-
 class Solution {
-public:
-    // Função auxiliar inline para conversão instantânea sem busca em memória
+public:   
     inline int getValue(char c) {
         switch (c) {
             case 'I': return 1;
@@ -15,15 +12,12 @@ public:
             default: return 0;
         }
     }
-
     int romanToInt(string s) {
         int total = 0;
         int n = s.length();
         
         for (int i = 0; i < n; i++) {
             int atual = getValue(s[i]);
-            
-            // Se não for o último caractere e o atual for menor que o próximo
             if (i + 1 < n && atual < getValue(s[i+1])) {
                 total -= atual;
             } else {
