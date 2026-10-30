@@ -1,27 +1,33 @@
 
+
 class Solution {
 public:
+    // Função auxiliar inline para conversão instantânea sem busca em memória
+    inline int getValue(char c) {
+        switch (c) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 0;
+        }
+    }
+
     int romanToInt(string s) {
-        // Cria um array rápido indexado pelo código ASCII do caractere
-        int roman[128];
-        roman['I'] = 1;
-        roman['V'] = 5;
-        roman['X'] = 10;
-        roman['L'] = 50;
-        roman['C'] = 100;
-        roman['D'] = 500;
-        roman['M'] = 1000;
-        
         int total = 0;
         int n = s.length();
         
         for (int i = 0; i < n; i++) {
-            // Se o valor atual for menor que o próximo valor, nós subtraímos
-            if (i + 1 < n && roman[s[i]] < roman[s[i+1]]) {
-                total -= roman[s[i]];
+            int atual = getValue(s[i]);
+            
+            // Se não for o último caractere e o atual for menor que o próximo
+            if (i + 1 < n && atual < getValue(s[i+1])) {
+                total -= atual;
             } else {
-                // Caso contrário, apenas somamos
-                total += roman[s[i]];
+                total += atual;
             }
         }
         
