@@ -2,5 +2,5 @@ class Solution:
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
-        string_x = str(x)
-        return string_x == string_x[::-1]
+        st = str(x)
+        return st == st[::-1]
